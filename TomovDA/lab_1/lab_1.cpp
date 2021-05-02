@@ -168,6 +168,28 @@ class List {
         }
         return tmp->value;
     }
+    
+    List& operator =(const List& al) {
+        resize(0);
+        count = al.count;
+        Node* tmp = new Node; 
+        head = tmp;
+        tmp->value = al.head->value;
+        Node* val = al.head->next;
+        while (val){
+            tmp->next = new Node;
+            tmp = tmp->next;
+            tmp->value = val->value;
+            val = val->next;
+        }
+        tmp->next = nullptr;
+        return *this;
+    }
+
+    List(const List& al) {
+        head = nullptr;
+        *this = al;
+    }
 
 
  };
